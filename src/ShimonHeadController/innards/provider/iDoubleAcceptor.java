@@ -1,0 +1,7 @@
+package ShimonHeadController.innards.provider;
+
+public interface iDoubleAcceptor {
+
+	public void set(double val);
+	
+}

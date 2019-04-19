@@ -1,0 +1,10 @@
+AllLibSearchPath=~/Documents/Georgia_Tech/GTRM_Lab/Shimon/Shimon_Head/src/ShimonHeadController/:~/Documents/Georgia_Tech/GTRM_Lab/Shimon/Shimon_Head/src/ShimonHeadController/
+ContentRootPath=~/Documents/Georgia_Tech/GTRM_Lab/Shimon/Shimon_Head/src/ShimonHeadController/
+InnardsDefaults.saveKeysFile=~/Documents/Georgia_Tech/GTRM_Lab/Shimon/Shimon_Head/src/ShimonHeadController/RequestedKeysLog.txt
+ResourceSearchPath=~/Documents/Georgia_Tech/GTRM_Lab/Shimon/Shimon_Head/src/ShimonHeadController/
+shadernum=1
+textureRepeatMode=1
+upaxis=2
+SerialPort=/dev/tty.usbserial-A1001a3m
+basicGeometry.elementArray=0
+IRCP.overrideBroadcast=255.255.255.255
