@@ -54,7 +54,6 @@ public class HeadMotorController {
         for (HeadMotor m : motors.values()) {
             System.out.println(m.name + " " + m.axis);
             m.home();
-            System.out.println("here");
         }
 
         boolean done = false;

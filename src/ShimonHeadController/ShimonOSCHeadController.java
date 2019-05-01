@@ -50,7 +50,7 @@ public class ShimonOSCHeadController implements iLaunchable {
 
 //        armTrackBehavior = new ArmTrackBehavior(dm, clusterer);
         headBangBehavior = new TriggeredHeadBangBehavior(dm);
-//        listenBehavior = new ListenBehavior(dm);
+        listenBehavior = new ListenBehavior(dm);
         breathBehavior = new BreatheBehavior(dm);
         
 //      dm.goTo("neckTilt", 0.f, 5f);
@@ -65,7 +65,7 @@ public class ShimonOSCHeadController implements iLaunchable {
         
 //        dm.goTo("neckTilt", -.7f, 5f);
 //        dm.goTo("basePan", -1.f, 20f);
-//        listenBehavior.setBasePan(-.9f);
+        listenBehavior.setBasePan(-.9f);
 //
         dm.goTo("neckPan", 0.f, 15f);
         dm.goTo("headTilt", -.5f, 10f);
@@ -74,8 +74,7 @@ public class ShimonOSCHeadController implements iLaunchable {
 
         short[] pos = {2750,1000};
         dm.goTo("lips", pos, (short)100, (short)10);
-//
-//
+
 //        listenBehavior.start();
 
         new OSCReceiver(HEAD_CMD_OSC_ADDR, HEAD_CMD_OSC_PORT) {
@@ -103,7 +102,8 @@ public class ShimonOSCHeadController implements iLaunchable {
                             dm.goTo("upperLip", Short.parseShort(args[1].toString()), Short.parseShort(args[3].toString()), Short.parseShort(args[4].toString()));
                             dm.goTo("lowerLip", Short.parseShort(args[2].toString()), Short.parseShort(args[3].toString()), Short.parseShort(args[4].toString()));
                         } else if (args.length == 3) {
-
+                            dm.goTo("upperLip", Short.parseShort(args[1].toString()));
+                            dm.goTo("lowerLip", Short.parseShort(args[2].toString()));
                         }
 
                         break;
@@ -172,14 +172,15 @@ public class ShimonOSCHeadController implements iLaunchable {
                         break;
 //
                     case "NECKPAN":
-                    System.out.println("neck pan command");
-                        if (args.length == 2)
-                            dm.goTo("neckPan", (Float) args[1], (Float) args[2]);
-                        else
-                            dm.goTo("neckPan", (Float) args[1], 10f);
+                    case "NECKPAN1":
+                        System.out.println("neck pan command");
+                            if (args.length == 2)
+                                dm.goTo("neckPan", (Float) args[1], (Float) args[2]);
+                            else
+                                dm.goTo("neckPan", (Float) args[1], 10f);
 
-//                    listenBehavior.setNeckPan((Float) args[1]);
-//                    listenBehavior.start();
+//                        listenBehavior.setNeckPan((Float) args[1]);
+//                        listenBehavior.start();
 
                         break;
 //
@@ -207,6 +208,7 @@ public class ShimonOSCHeadController implements iLaunchable {
                             // System.out.println("tracking is true");
                         }
                         break;
+
                     case "BANG":
                         if (args.length > 1) {
                             headBang((Integer) args[1] != 0);
@@ -214,17 +216,24 @@ public class ShimonOSCHeadController implements iLaunchable {
                             headBang(true);
                         }
                         break;
+
                     case "PLAY":
                         play();
                         break;
+
                     case "BEAT":
+                    case "BEAT1LOW":
+                    case "BEAT1MID":
+                    case "BEAT1HIGH":
                         int length = 960;
                         if (args.length > 1) {
                             if ((Integer) args[1] > 300) {
                                 length = (Integer) args[1];
                             }
                         }
+                        headBangBehavior.start();
                         headBangBehavior.beat(length);
+                        headBangBehavior.stop();
                         break;
                 }
 

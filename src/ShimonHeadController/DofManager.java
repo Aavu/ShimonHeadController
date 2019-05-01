@@ -165,7 +165,6 @@ public class DofManager {
     public void goTo(String dofName, short pos)
     {
         Dof d = dofs.get(dofName);
-//        hmc.goTo(dofName, pos, vel, accel);
         hmc.goTo(dofName, d.adjustPos(pos));
     }
 

@@ -17,7 +17,6 @@ public class CopleyASCIIController {
 
     private boolean comPortInitialized;
     private SerialPort port;
-//    private SerialPortJavaComm comPort;
 
     private long sentTime;
 
